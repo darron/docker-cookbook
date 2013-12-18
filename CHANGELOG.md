@@ -1,3 +1,3 @@
-# 0.1.0 (DATE)
+# 0.1.0 (12/17/2013)
 
-* _Add your changes here_
+* Initial release.
