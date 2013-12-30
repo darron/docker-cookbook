@@ -9,6 +9,10 @@ describe 'docker::default' do
     expect(chef_run).to install_package('lxc-docker')
   end
 
+  it 'creates a remote_file' do
+    expect(chef_run).to create_remote_file('/etc/init/docker.conf')
+  end
+
   it 'enables the docker service' do
     expect(chef_run).to enable_service('docker')
   end
