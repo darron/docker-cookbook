@@ -27,3 +27,5 @@ RSpec.configure do |config|
   # Use documentation output formatter
   # config.formatter = :documentation
 end
+
+at_exit { ChefSpec::Coverage.report! }
