@@ -32,12 +32,11 @@ service 'docker' do
   action [:enable, :stop]
 end
 
-remote_file node['docker']['upstart_file_path'] do
-  source node['docker']['upstart_file']
+template '/etc/default/docker' do
+  source 'docker.erb'
+  mode 0644
   owner 'root'
   group 'root'
-  mode 00644
-  action :create
 end
 
 service 'docker' do
