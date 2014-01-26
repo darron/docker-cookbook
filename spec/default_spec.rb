@@ -13,6 +13,10 @@ describe 'docker::default' do
     expect(chef_run).to create_template('/etc/default/docker')
   end
 
+  it 'creates the docker init file' do
+    expect(chef_run).to create_template('/etc/init/docker.conf')
+  end
+
   it 'enables the docker service' do
     expect(chef_run).to enable_service('docker')
   end
