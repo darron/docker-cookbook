@@ -1,2 +1,6 @@
 LineLength:
   Max: 150
+ Excludes:
+    - test/**
+    - vendor/**
+    - ruby/**
