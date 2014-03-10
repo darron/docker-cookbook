@@ -25,6 +25,8 @@ apt_repository 'docker' do
   key node['docker']['package']['repo_key']
 end
 
+package 'cgroup-lite'
+
 package 'lxc-docker'
 
 service 'docker' do

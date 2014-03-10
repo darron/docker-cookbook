@@ -9,6 +9,10 @@ describe 'docker::default' do
     expect(chef_run).to install_package('lxc-docker')
   end
 
+  it 'installs cgroup-lite' do
+    expect(chef_run).to install_package('cgroup-lite')
+  end
+
   it 'creates the docker defaults file' do
     expect(chef_run).to create_template('/etc/default/docker')
   end
