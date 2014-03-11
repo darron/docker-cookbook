@@ -21,6 +21,10 @@ describe 'docker::default' do
     expect(chef_run).to create_template('/etc/init/docker.conf')
   end
 
+  it 'creates a new /etc/rc.local file' do
+    expect(chef_run).to create_cookbook_file('/etc/rc.local')
+  end
+
   it 'enables the docker service' do
     expect(chef_run).to enable_service('docker')
   end
