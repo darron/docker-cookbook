@@ -43,18 +43,12 @@ end
 
 template '/etc/init/docker.conf' do
   source 'init.erb'
-  mode 0644
+  mode 0755
   owner 'root'
   group 'root'
 end
 
 service 'docker' do
   provider Chef::Provider::Service::Upstart
-  action [:start]
-end
-
-cookbook_file '/etc/rc.local' do
-  mode 0755
-  owner 'root'
-  group 'root'
+  action [:enable, :start]
 end
