@@ -52,3 +52,9 @@ service 'docker' do
   provider Chef::Provider::Service::Upstart
   action [:enable, :start]
 end
+
+cookbook_file '/etc/rc.local' do
+  mode 0755
+  owner 'root'
+  group 'root'
+end
