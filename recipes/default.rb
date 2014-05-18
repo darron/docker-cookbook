@@ -37,10 +37,10 @@ bash 'look for aufs' do
   cwd '/tmp'
   code <<-EOH
   if ! grep -q aufs /proc/filesystems && ! sh -c 'modprobe aufs'; then
-  	echo >&2 'Warning: tried to install '"$kern_extras"' (for AUFS)'
-  	echo >&2 ' but we still have no AUFS.  Docker may not work. Proceeding anyways!'
-  	( set -x; sleep 10 )
-	fi
+    echo >&2 'Warning: tried to install '"$kern_extras"' (for AUFS)'
+    echo >&2 ' but we still have no AUFS.  Docker may not work. Proceeding anyways!'
+    ( set -x; sleep 10 )
+  fi
   EOH
 end
 
