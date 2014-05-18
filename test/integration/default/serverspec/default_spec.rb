@@ -11,4 +11,8 @@ describe 'docker::default' do
   describe port(4243) do
     it { should be_listening }
   end
+
+  describe command('docker info') do
+    its(:stdout) { should match /Storage Driver: aufs/ }
+  end
 end
