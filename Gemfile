@@ -8,6 +8,7 @@ gem "rake"
 gem "tailor"
 gem "rubocop"
 gem "chef-taste"
+gem 'chef-sugar'
 
 group :integration do
   gem "test-kitchen", "~> 1.0"

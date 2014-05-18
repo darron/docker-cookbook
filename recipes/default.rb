@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+include_recipe 'chef-sugar::default'
+
 apt_repository 'docker' do
   uri node['docker']['package']['repo_url']
   distribution node['docker']['package']['distribution']
@@ -26,6 +28,21 @@ apt_repository 'docker' do
 end
 
 package 'cgroup-lite'
+
+# Install package for aufs.
+package node['docker']['image']['extra']
+
+bash 'look for aufs' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+  if ! grep -q aufs /proc/filesystems && ! sh -c 'modprobe aufs'; then
+  	echo >&2 'Warning: tried to install '"$kern_extras"' (for AUFS)'
+  	echo >&2 ' but we still have no AUFS.  Docker may not work. Proceeding anyways!'
+  	( set -x; sleep 10 )
+	fi
+  EOH
+end
 
 package 'lxc-docker'
 

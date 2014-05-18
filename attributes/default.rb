@@ -21,3 +21,5 @@
 default['docker']['package']['distribution'] = 'docker'
 default['docker']['package']['repo_url'] = 'https://get.docker.io/ubuntu'
 default['docker']['package']['repo_key'] = 'https://get.docker.io/gpg'
+
+default['docker']['image']['extra'] = 'linux-image-extra-$(uname -r)'
