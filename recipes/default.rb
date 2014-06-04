@@ -29,6 +29,10 @@ end
 
 package 'cgroup-lite'
 
+# Having this installed before it installs seems to help better.
+package 'apparmor'
+package 'apparmor-utils'
+
 # Install package for aufs.
 package node['docker']['image']['extra']
 
