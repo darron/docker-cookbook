@@ -20,6 +20,10 @@
 
 include_recipe 'chef-sugar::default'
 
+execute 'install https transport' do
+  command 'apt-get install -y apt-transport-https'
+end
+
 apt_repository 'docker' do
   uri node['docker']['package']['repo_url']
   distribution node['docker']['package']['distribution']
