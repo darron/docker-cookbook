@@ -54,6 +54,15 @@ end
 
 package 'lxc-docker'
 
+# Virtualbox adds 'vboxadd' user - don't create in vagrant. 
+user 'docker' do
+  comment 'docker'
+  uid '999'
+  gid 'docker'
+  shell '/bin/bash'
+  not_if { vagrant? }
+end
+
 service 'docker' do
   provider Chef::Provider::Service::Upstart
   action [:enable, :stop]
