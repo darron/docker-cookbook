@@ -60,7 +60,7 @@ user 'docker' do
   uid '999'
   gid 'docker'
   shell '/bin/bash'
-  not_if { 'grep "x:999" /etc/passwd' }
+  not_if "grep 'x:999' /etc/passwd"
 end
 
 service 'docker' do
