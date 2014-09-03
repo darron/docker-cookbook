@@ -54,13 +54,13 @@ end
 
 package 'lxc-docker'
 
-# Virtualbox adds 'vboxadd' user - don't create in vagrant. 
+# Virtualbox adds 'vboxadd' user - don't create in vagrant.
 user 'docker' do
   comment 'docker'
   uid '999'
   gid 'docker'
   shell '/bin/bash'
-  not_if { vagrant? }
+  not_if { 'grep "x:999" /etc/passwd' }
 end
 
 service 'docker' do
