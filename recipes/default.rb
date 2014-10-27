@@ -29,6 +29,7 @@ apt_repository 'docker' do
   distribution node['docker']['package']['distribution']
   components ['main']
   key node['docker']['package']['repo_key']
+  keyserver 'hkp://keyserver.ubuntu.com:80'
 end
 
 package 'cgroup-lite'
