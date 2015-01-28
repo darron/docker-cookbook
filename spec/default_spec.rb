@@ -28,4 +28,8 @@ describe 'docker::default' do
   it 'starts the docker service' do
     expect(chef_run).to start_service('docker')
   end
+
+  before do
+    stub_command("grep 'x:999' /etc/passwd").and_return(0)
+  end
 end

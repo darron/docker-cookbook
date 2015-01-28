@@ -2,7 +2,7 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-RSpec.configure do |config|
+RSpec.configure do |_config|
   # Specify the path for Chef Solo to find cookbooks
   # config.cookbook_path = '/var/cookbooks'
 

@@ -13,6 +13,6 @@ describe 'docker::default' do
   end
 
   describe command('docker info') do
-    its(:stdout) { should match /Storage Driver: aufs/ }
+    its(:stdout) { should match(/Storage Driver: aufs/) }
   end
 end
