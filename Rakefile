@@ -4,7 +4,7 @@ require 'rspec/core/rake_task'
 
 desc 'Run Foodcritic lint checks'
 FoodCritic::Rake::LintTask.new(:lint) do |t|
-  t.options = { :fail_tags => ['any'] }
+  t.options = { fail_tags: ['any'] }
 end
 
 desc 'Run extra Foodcritic rulesets'
@@ -16,8 +16,8 @@ desc 'Run ChefSpec examples'
 RSpec::Core::RakeTask.new(:spec)
 
 desc 'Run all tests'
-task :test => [:cleanup_vendor, :lint, :food_extra, :spec, :rubocop]
-task :default => :test
+task test: [:cleanup_vendor, :lint, :food_extra, :spec, :rubocop]
+task default: :test
 
 desc 'Run rubocop tests'
 task :rubocop do
@@ -35,8 +35,8 @@ task :berksintall do
 end
 
 desc 'Syntax check and build Vagrant box'
-task :build_vagrant => [:cleanup_vendor, :cleanup_vagrant, :lint, :spec, :rubocop, :berksintall, :vagrantup]
-task :vagrant => :build_vagrant
+task build_vagrant: [:cleanup_vendor, :cleanup_vagrant, :lint, :spec, :rubocop, :berksintall, :vagrantup]
+task vagrant: :build_vagrant
 
 task :vagrantup do
   sh 'vagrant up --provision'
@@ -47,45 +47,45 @@ task :cleanup_vagrant do
 end
 
 desc 'Syntax check and build all Packer targets'
-task :build => [:cleanup_vendor, :lint, :spec, :rubocop, :packer]
+task build: [:cleanup_vendor, :lint, :spec, :rubocop, :packer]
 
-task :packer => [:cleanup_vendor, :packer_build]
+task packer: [:cleanup_vendor, :packer_build]
 
 task :packer_build do
   sh 'berks install --path vendor/cookbooks; packer build template.json'
 end
 
 desc 'Syntax check and build AMI'
-task :build_ami => [:cleanup_vendor, :lint, :spec, :rubocop, :packer_ami]
+task build_ami: [:cleanup_vendor, :lint, :spec, :rubocop, :packer_ami]
 
-task :packer_ami => [:cleanup_vendor, :packer_build_ami]
+task packer_ami: [:cleanup_vendor, :packer_build_ami]
 
 task :packer_build_ami do
   sh 'berks install --path vendor/cookbooks; packer build -only=amazon-ebs template.json'
 end
 
 desc 'Syntax check and build Droplet'
-task :build_droplet => [:cleanup_vendor, :lint, :spec, :rubocop, :packer_droplet]
+task build_droplet: [:cleanup_vendor, :lint, :spec, :rubocop, :packer_droplet]
 
-task :packer_droplet => [:cleanup_vendor, :packer_build_droplet]
+task packer_droplet: [:cleanup_vendor, :packer_build_droplet]
 
 task :packer_build_droplet do
   sh 'berks install --path vendor/cookbooks; packer build -only=digitalocean template.json'
 end
 
 desc 'Syntax check and build Openstack Image'
-task :build_openstack => [:cleanup_vendor, :lint, :spec, :rubocop, :packer_openstack]
+task build_openstack: [:cleanup_vendor, :lint, :spec, :rubocop, :packer_openstack]
 
-task :packer_openstack => [:cleanup_vendor, :packer_build_openstack]
+task packer_openstack: [:cleanup_vendor, :packer_build_openstack]
 
 task :packer_build_openstack do
   sh 'berks install --path vendor/cookbooks; packer build -only=openstack template.json'
 end
 
 desc 'Syntax check and build Google Compute Image'
-task :build_gce => [:cleanup_vendor, :lint, :spec, :rubocop, :packer_gce]
+task build_gce: [:cleanup_vendor, :lint, :spec, :rubocop, :packer_gce]
 
-task :packer_gce => [:cleanup_vendor, :packer_build_gce]
+task packer_gce: [:cleanup_vendor, :packer_build_gce]
 
 task :packer_build_gce do
   sh 'berks install --path vendor/cookbooks; packer build -only=googlecompute template.json'
@@ -109,7 +109,7 @@ begin
   Kitchen::RakeTasks.new
 
   desc 'Alias for kitchen:all'
-  task :integration => 'kitchen:all'
+  task integration: 'kitchen:all'
 rescue LoadError
   puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
 end
