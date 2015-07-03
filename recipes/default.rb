@@ -93,20 +93,3 @@ cookbook_file '/etc/rc.local' do
   owner 'root'
   group 'root'
 end
-
-bash 'install nsenter' do
-  user 'root'
-  cwd '/tmp'
-  code <<-EOH
-    docker run --rm jpetazzo/nsenter cat /nsenter > /usr/local/bin/nsenter
-    chmod 755 /usr/local/bin/nsenter
-  EOH
-  not_if { File.exist?('/usr/local/bin/nsenter') }
-end
-
-remote_file '/usr/local/bin/docker-enter' do
-  source 'https://raw.githubusercontent.com/jpetazzo/nsenter/master/docker-enter'
-  owner 'root'
-  group 'root'
-  mode 00755
-end
