@@ -18,8 +18,8 @@
 # limitations under the License.
 #
 
-default['docker']['package']['distribution'] = 'docker'
-default['docker']['package']['repo_url'] = 'https://get.docker.io/ubuntu'
-default['docker']['package']['repo_key'] = 'A88D21E9'
+default['docker']['package']['distribution'] = 'ubuntu-trusty'
+default['docker']['package']['repo_url'] = 'https://apt.dockerproject.org/repo'
+default['docker']['package']['repo_key'] = '2C52609D'
 
 default['docker']['image']['extra'] = 'linux-image-extra-$(uname -r)'

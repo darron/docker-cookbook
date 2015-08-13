@@ -53,7 +53,7 @@ bash 'look for aufs' do
   EOH
 end
 
-package 'lxc-docker'
+package 'docker-engine'
 
 # Virtualbox adds 'vboxadd' user - don't create in vagrant.
 user 'docker' do
