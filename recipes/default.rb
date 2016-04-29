@@ -76,13 +76,6 @@ template '/etc/default/docker' do
   group 'root'
 end
 
-template '/etc/init/docker.conf' do
-  source 'init.erb'
-  mode 0755
-  owner 'root'
-  group 'root'
-end
-
 service 'docker' do
   provider Chef::Provider::Service::Upstart
   action [:enable, :start]
